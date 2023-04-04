@@ -1,18 +1,38 @@
-import { Category } from '../../model/Category';
+import { Specification } from '../../model/Specification';
 import {
   ISpecificationDTO,
   ISpecificationsRepositories,
 } from '../ISpecificationsRepositories';
 
 class SpecificationsRepositories implements ISpecificationsRepositories {
-  findBySpecificatoin(name: string): Category {
-    throw new Error('Method not implemented.');
+  private specifications: Specification[];
+
+  constructor() {
+    this.specifications = [];
   }
-  create({ name, description }: ISpecificationDTO): Category {
-    throw new Error('Method not implemented.');
+
+  create({ name, description }: ISpecificationDTO): Specification {
+    const specification = new Specification();
+
+    Object.assign(specification, {
+      name,
+      description,
+      created_at: new Date(),
+    });
+
+    this.specifications.push(specification);
+
+    return specification;
   }
-  listSpecifications(): Category[] {
-    throw new Error('Method not implemented.');
+
+  findBySpecificatoin(name: string): Specification {
+    return this.specifications.find(
+      (specification) => specification.name === name
+    );
+  }
+
+  listSpecifications(): Specification[] {
+    return this.specifications;
   }
 }
 export { SpecificationsRepositories };
