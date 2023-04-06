@@ -1,7 +1,11 @@
 {
   "type": "postgres",
-  "host": "localhost",
+  "port": 5432,
+  "host": "database_ignite",
   "username": "rentx",
   "password": "rentx",
-  "database": "rentx"
+  "database": "rentx",
+  "cli": {
+    "migrationDir": "./src/database/migrations"
+  }
 }
