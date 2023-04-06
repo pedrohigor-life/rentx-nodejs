@@ -6,6 +6,11 @@ import { categoriesRoutes } from './modules/routes/categoriesRoutes';
 import { specificationsRoutes } from './modules/routes/specificationRoutes';
 
 /**
+ * Database
+ */
+import './database';
+
+/**
  * Express
  */
 const app = express();
