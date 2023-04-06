@@ -2,7 +2,7 @@ import express from 'express';
 import swaggerUi from 'swagger-ui-express';
 import swaggerFile from './swagger.json';
 
-import { categoriesRoutes } from './modules/routes/categoriesRoutes';
+import { categoriesRoutes } from './modules/routes/categoriesRoutes/categories.routes';
 import { specificationsRoutes } from './modules/routes/specificationRoutes';
 
 /**
