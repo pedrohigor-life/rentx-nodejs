@@ -11,6 +11,11 @@ import { specificationsRoutes } from './modules/routes/specificationRoutes';
 import './database';
 
 /**
+ * Container
+ */
+import './shared/container';
+
+/**
  * Express
  */
 const app = express();
