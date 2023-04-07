@@ -8,14 +8,17 @@ class CreateSpecificationUseCase {
   constructor(
     private specificationsRepositories: ISpecificationsRepositories
   ) {}
-  execute({ name, description }: ISpecificationDTO): Specification {
+  async execute({
+    name,
+    description,
+  }: ISpecificationDTO): Promise<Specification> {
     const specificationAlredyExists =
-      this.specificationsRepositories.findBySpecificatoin(name);
+      await this.specificationsRepositories.findBySpecificatoin(name);
 
     if (specificationAlredyExists)
       throw new Error('Specification alredy exists');
 
-    return this.specificationsRepositories.create({ name, description });
+    return await this.specificationsRepositories.create({ name, description });
   }
 }
 export { CreateSpecificationUseCase };

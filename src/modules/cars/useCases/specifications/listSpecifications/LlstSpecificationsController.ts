@@ -3,10 +3,15 @@ import { ListSpecificationsUseCase } from './ListSpecificationsUseCase';
 
 class ListSpecificationsController {
   constructor(private specificationsUseCase: ListSpecificationsUseCase) {}
-  handle(request: Request, response: Response): Response {
-    const data = this.specificationsUseCase.execute();
 
-    return response.status(200).json(data);
+  async handle(request: Request, response: Response): Promise<Response> {
+    try {
+      const data = await this.specificationsUseCase.execute();
+
+      return response.status(200).json(data);
+    } catch (error) {
+      return response.status(400).json({ error: error.message });
+    }
   }
 }
 export { ListSpecificationsController };
