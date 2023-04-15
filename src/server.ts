@@ -3,8 +3,12 @@ import express from 'express';
 import swaggerUi from 'swagger-ui-express';
 import swaggerFile from './swagger.json';
 
+/**
+ * Routes
+ */
 import { categoriesRoutes } from './modules/routes/categoriesRoutes/categories.routes';
 import { specificationsRoutes } from './modules/routes/specificationRoutes/specificaitons.routes';
+import { userRoutes } from './modules/routes/usersRoutes/usersRoutes.routes';
 
 /**
  * Database
@@ -12,7 +16,7 @@ import { specificationsRoutes } from './modules/routes/specificationRoutes/speci
 import './database';
 
 /**
- * Container
+ * Container tSyringe
  */
 import './shared/container';
 
@@ -33,6 +37,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
  */
 app.use('/categories', categoriesRoutes);
 app.use('/specifications', specificationsRoutes);
+app.use('/users', userRoutes);
 
 app.listen(3333, () => {
   console.log('[APP] Server is running ...');
