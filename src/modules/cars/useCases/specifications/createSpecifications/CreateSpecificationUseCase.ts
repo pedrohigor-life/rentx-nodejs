@@ -4,6 +4,7 @@ import {
   ISpecificationsRepositories,
   ISpecificationDTO,
 } from '../../../repositories/ISpecificationsRepositories';
+import { AppError } from '../../../../../errors/AppErrors';
 
 @injectable()
 class CreateSpecificationUseCase {
@@ -19,7 +20,7 @@ class CreateSpecificationUseCase {
       await this.specificationsRepositories.findBySpecificatoin(name);
 
     if (specificationAlredyExists)
-      throw new Error('Specification alredy exists');
+      throw new AppError('Specification alredy exists', 401);
 
     return await this.specificationsRepositories.create({ name, description });
   }

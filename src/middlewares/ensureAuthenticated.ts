@@ -33,7 +33,7 @@ export async function ensureAuthenticated(
 
       next();
     } catch (error) {
-      throw new Error('Invalid token');
+      throw new AppError('Invalid token', 401);
     }
   } catch (error) {
     return response.status(error.statusCode).json({ error: error.message });
