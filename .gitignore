@@ -140,4 +140,4 @@ dist
 .svelte-kit
 
 # Tmp files
-tmp/*
+src/tmp/*

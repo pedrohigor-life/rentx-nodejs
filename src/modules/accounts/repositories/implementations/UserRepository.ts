@@ -10,18 +10,16 @@ class UserRepository implements IUserRepository {
     this.repository = getRepository(User);
   }
 
+  async updateAvatar(userId: string, avatarFile: string): Promise<void> {
+    this.repository.update(userId, { avatar: avatarFile });
+  }
+
   async findById(id: string): Promise<User> {
-    return this.repository.findOne(
-      { id },
-      { select: ['name', 'email', 'driver_license'] }
-    );
+    return this.repository.findOne({ id });
   }
 
   async findByUser(email: string): Promise<User> {
-    return this.repository.findOne(
-      { email },
-      { select: ['name', 'email', 'driver_license'] }
-    );
+    return this.repository.findOne({ email });
   }
 
   async create({

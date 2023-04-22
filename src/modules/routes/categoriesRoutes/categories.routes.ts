@@ -1,5 +1,7 @@
 import multer from 'multer';
 
+import uploadConfig from '../../../config/upload';
+
 import { Router } from 'express';
 
 import { CreateCategoryController } from '../../cars/useCases/categories/createCategory/CreateCategoryController';
@@ -9,9 +11,7 @@ import { ensureAuthenticated } from '../../../middlewares/ensureAuthenticated';
 
 const categoriesRoutes = Router();
 
-const upload = multer({
-  dest: './tmp',
-});
+const uploadCategoriesCSV = multer(uploadConfig.upload('./tmp/csv'));
 
 const createCategoryController = new CreateCategoryController();
 const importCategoryController = new ImportCategoryController();
@@ -22,7 +22,7 @@ categoriesRoutes.post('/', createCategoryController.handle);
 
 categoriesRoutes.post(
   '/import',
-  upload.single('file'),
+  uploadCategoriesCSV.single('file'),
   importCategoryController.handle
 );
 
