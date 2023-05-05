@@ -3,6 +3,7 @@ import express, { NextFunction, Request, Response } from 'express';
 import 'express-async-errors';
 import swaggerUi from 'swagger-ui-express';
 import swaggerFile from './swagger.json';
+import cors from 'cors';
 
 import { routes } from './modules/routes';
 
@@ -22,6 +23,15 @@ import { AppError } from './errors/AppErrors';
  */
 const app = express();
 app.use(express.json());
+
+/**
+ * Cors
+ */
+app.use(
+  cors({
+    origin: '*',
+  })
+);
 
 /**
  * Routes
