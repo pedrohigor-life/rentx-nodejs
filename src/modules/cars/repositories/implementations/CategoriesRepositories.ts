@@ -1,20 +1,21 @@
+import { PostgresDataSource } from '../../../../database/datasources/PostgresDataSource';
 import { Category } from '../../entities/Category';
 import {
   ICategoriesRepositories,
   ICreateCategoryDTO,
 } from '../ICategoriesRepositories';
 
-import { Repository, getRepository } from 'typeorm';
+import { Repository } from 'typeorm';
 
 class CategoriesRepositories implements ICategoriesRepositories {
   private respository: Repository<Category>;
 
   constructor() {
-    this.respository = getRepository(Category);
+    this.respository = PostgresDataSource.getRepository(Category);
   }
 
   async findByCategory(name: string): Promise<Category> {
-    return this.respository.findOne({ name });
+    return this.respository.findOneBy({ name });
   }
 
   async create({ name, description }: ICreateCategoryDTO): Promise<Category> {

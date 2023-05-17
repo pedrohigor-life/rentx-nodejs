@@ -4,16 +4,17 @@ import {
   ISpecificationDTO,
   ISpecificationsRepositories,
 } from '../ISpecificationsRepositories';
+import { PostgresDataSource } from '../../../../database/datasources/PostgresDataSource';
 
 class SpecificationsRepositories implements ISpecificationsRepositories {
   private respository: Repository<Specification>;
 
   constructor() {
-    this.respository = getRepository(Specification);
+    this.respository = PostgresDataSource.getRepository(Specification);
   }
 
   async findBySpecificatoin(name: string): Promise<Specification> {
-    return await this.respository.findOne({ name });
+    return await this.respository.findOneBy({ name });
   }
 
   async create({
