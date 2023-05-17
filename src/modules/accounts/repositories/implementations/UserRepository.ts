@@ -43,7 +43,7 @@ class UserRepository implements IUserRepository {
 
   async listUsers(): Promise<User[]> {
     const users = await this.repository.find({
-      select: ['name', 'email', 'driver_license'],
+      select: ['name', 'email', 'driver_license', 'avatar'],
     });
 
     return users;
