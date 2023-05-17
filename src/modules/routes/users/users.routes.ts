@@ -13,15 +13,15 @@ const uploadAvatar = multer(uploadConfig.upload('./tmp/avatar'));
 
 const createUserController = new CreateUserController();
 const listUserController = new ListUserController();
-const updateUserAvatarUseCase = new UpdateUserAvatarController();
+// const updateUserAvatarUseCase = new UpdateUserAvatarController();
 
 usersRoutes.post('/', createUserController.handle);
 usersRoutes.get('/', listUserController.handle);
-usersRoutes.patch(
-  '/avatar',
-  uploadAvatar.single('avatar'),
-  ensureAuthenticated,
-  updateUserAvatarUseCase.handle
-);
+// usersRoutes.patch(
+//   '/avatar',
+//   uploadAvatar.single('avatar'),
+//   ensureAuthenticated,
+// updateUserAvatarUseCase.handle
+// );
 
 export { usersRoutes };

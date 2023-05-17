@@ -2,12 +2,13 @@ import { Repository, getRepository } from 'typeorm';
 import { ICreateUserDTO } from '../../dtos/ICreateUserDTO';
 import { IUserRepository } from '../IUsersRepository';
 import { User } from '../../entities/User';
+import { PostgresDataSource } from '../../../../database/datasources/PostgresDataSource';
 
 class UserRepository implements IUserRepository {
   private repository: Repository<User>;
 
   constructor() {
-    this.repository = getRepository(User);
+    this.repository = PostgresDataSource.getRepository(User);
   }
 
   async updateAvatar(userId: string, avatarFile: string): Promise<void> {
@@ -15,11 +16,13 @@ class UserRepository implements IUserRepository {
   }
 
   async findById(id: string): Promise<User> {
-    return this.repository.findOne({ id });
+    return await this.repository.findOneBy({
+      id,
+    });
   }
 
   async findByUser(email: string): Promise<User> {
-    return this.repository.findOne({ email });
+    return this.repository.findOneBy({ email });
   }
 
   async create({
