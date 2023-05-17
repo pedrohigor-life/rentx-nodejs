@@ -1,4 +1,4 @@
-import { Repository, getRepository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { Specification } from '../../entities/Specification';
 import {
   ISpecificationDTO,
